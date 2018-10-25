@@ -1,0 +1,5 @@
+#!/bin/bash
+
+aws ec2 describe-instances \
+       --output table \
+       --query 'sort_by(Reservations[].Instances[].{InstanceId:InstanceId,Name:Tags[?Key==`Name`].Value|[0],Ip:PrivateIpAddress}[],&Name)'
