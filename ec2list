@@ -8,7 +8,9 @@ OUTPUT="table"
 QUERY="sort_by(Reservations[].Instances[].\
                 {InstanceId:InstanceId,\
                  Name:Tags[?Key==\`Name\`].Value|[0],\
-                 Ip:PrivateIpAddress}[],&Name)"
+                 Ip:PrivateIpAddress,\
+                 State:State.Name},&Name)"
+
 
 # Set Command
 EC2_DESCRIBE=`aws ec2 describe-instances --output "$OUTPUT" --query "$QUERY"`
